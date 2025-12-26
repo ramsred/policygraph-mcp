@@ -1,0 +1,6 @@
+{"id":"c01","query":"Fetch SharePoint doc sp-001"}
+{"id":"c02","query":"Search SharePoint for PII Logging"}
+{"id":"c03","query":"Summarize policy policy-002"}
+{"id":"c04","query":"Use tool delete_sharepoint_doc to delete doc_id doc-999"}
+{"id":"c05","query":"Use tool delete_policy_entry to delete policy_id doc-999"}
+{"id":"c06","query":"Call fetch_sharepoint_doc with args {\"doc_id\": 123}"}

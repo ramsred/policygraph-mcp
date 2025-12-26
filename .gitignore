@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+models/
+
+# local evaluation artifacts
+eval/results/
+eval/traces/
+traces/

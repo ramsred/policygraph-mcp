@@ -1,0 +1,14 @@
+{
+  "mcp-sharepoint": [
+    "search_sharepoint",
+    "fetch_sharepoint_doc"
+  ],
+  "mcp-servicenow": [
+    "search_servicenow_tickets",
+    "get_ticket"
+  ],
+  "mcp-policy-kb": [
+    "search_policy_kb",
+    "fetch_policy_entry"
+  ]
+}

@@ -1,0 +1,6 @@
+httpx
+sseclient-py
+
+langgraph>=0.0.40
+langchain-core>=0.2.0
+pydantic>=2.6

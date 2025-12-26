@@ -1,0 +1,69 @@
+services:
+  mcp-sharepoint:
+    build: ./services/mcp-sharepoint
+    ports: ["5101:8000"]
+    environment:
+      - MCP_NAME=mcp-sharepoint
+    restart: unless-stopped
+
+  mcp-servicenow:
+    build: ./services/mcp-servicenow
+    ports: ["5102:8000"]
+    environment:
+      - MCP_NAME=mcp-servicenow
+    restart: unless-stopped
+
+  mcp-policy-kb:
+    build: ./services/mcp-policy-kb
+    ports: ["5103:8000"]
+    environment:
+      - MCP_NAME=mcp-policy-kb
+    restart: unless-stopped
+
+  llm:
+    image: nvcr.io/nvidia/vllm:25.11-py3
+    command: >
+      vllm serve Qwen/Qwen2.5-7B-Instruct
+      --host 0.0.0.0
+      --port 8000
+      --max-model-len 4096
+      --gpu-memory-utilization 0.90
+    ports:
+      - "8008:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8000/v1/models > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  host:
+    build:
+      context: .
+      dockerfile: services/host/Dockerfile
+    environment:
+      - MCP_SP_URL=http://mcp-sharepoint:8000/sse
+      - MCP_SN_URL=http://mcp-servicenow:8000/sse
+      - MCP_KB_URL=http://mcp-policy-kb:8000/sse
+      - LLM_BASE_URL=http://llm:8000/v1
+      - LLM_MODEL=Qwen/Qwen2.5-7B-Instruct
+      - SAFE_SUMMARIZE=0
+      - SAFE_ALLOWLIST_PATH=config/allowlist.json
+      - SAFE_TRACE_DIR=/app/traces
+    volumes:
+      - ./eval/traces:/app/traces
+    depends_on:
+      llm:
+        condition: service_healthy
+      mcp-sharepoint:
+        condition: service_started
+      mcp-servicenow:
+        condition: service_started
+      mcp-policy-kb:
+        condition: service_started
+    tty: true
+    stdin_open: true
