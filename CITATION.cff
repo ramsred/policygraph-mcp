@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+title: "PolicyGraph: A Policy-Gated MCP Runtime for Safe and Auditable Tool Execution"
+authors:
+  - family-names: Kallu
+    given-names: Venkata Rami Reddy
+year: 2025
+repository-code: https://github.com/ramsred/policygraph-mcp
