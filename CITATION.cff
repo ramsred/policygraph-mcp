@@ -1,7 +1,29 @@
 cff-version: 1.2.0
 title: "PolicyGraph: A Policy-Gated MCP Runtime for Safe and Auditable Tool Execution"
+message: "If you use this software, please cite the associated paper and the Zenodo software artifact."
+type: software
+
 authors:
   - family-names: Kallu
     given-names: Venkata Rami Reddy
-year: 2025
-repository-code: https://github.com/ramsred/policygraph-mcp
+
+repository-code: "https://github.com/ramsred/policygraph-mcp"
+url: "https://github.com/ramsred/policygraph-mcp"
+license: "Apache-2.0"
+
+# Software artifact DOI (GitHub↔Zenodo integration)
+doi: "10.5281/zenodo.18243973"
+version: "v1.0"
+published: 2026-01-14
+date-released: 2026-01-14
+
+preferred-citation:
+  type: article
+  title: "PolicyGraph: A Policy-Gated MCP Runtime for Safe and Auditable Tool Execution"
+  authors:
+    - family-names: Kallu
+      given-names: Venkata Rami Reddy
+  year: 2026
+  publisher: "Zenodo"
+  doi: "10.5281/zenodo.18243637"
+  url: "https://doi.org/10.5281/zenodo.18243637"
